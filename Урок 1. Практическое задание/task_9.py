@@ -4,3 +4,21 @@
 
 Подсказка: можно добавить проверку, что введены равные числа
 """
+while True:
+    print('\n=== Определение среднего числа из 3-х ===')
+
+    A = input('Введите первое число: ')
+    B = input('Введите второе число: ')
+    C = input('Введите третье число: ')
+    if A.isdigit() and B.isdigit() and C.isdigit():
+        if B < A < C or C < A < B:
+            print('Среднее число:', A)
+        elif A < B < C or C < B < A:
+            print('Среднее число:', B)
+        elif A == B or A == C or B == C or A == B == C:
+            print('Введите разные числа!')
+            continue
+        else:
+            print('Среднее число:', C)
+        break
+    print('Некорректно введённые данные!')
