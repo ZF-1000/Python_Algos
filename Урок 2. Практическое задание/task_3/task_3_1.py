@@ -12,3 +12,18 @@
 
 ЗДЕСЬ ДОЛЖНА БЫТЬ РЕАЛИЗАЦИЯ ЧЕРЕЗ ЦИКЛ
 """
+while True:
+    try:
+        NUMBER = int(input('Введите число: '))
+        INVERTED_NUMBER = 0
+
+        while NUMBER > 0:
+            DIGIT = NUMBER % 10  # последняя цифра числа
+            NUMBER = NUMBER // 10  # убираем последнюю цифру
+            INVERTED_NUMBER = INVERTED_NUMBER * 10  # увеличиваем разядность
+            INVERTED_NUMBER = INVERTED_NUMBER + DIGIT  # добавляем очередную цифру
+
+        print(f'Перевёрнутое число: {INVERTED_NUMBER}')
+        break
+    except ValueError:
+        print('Некорректно введены данные!\n')

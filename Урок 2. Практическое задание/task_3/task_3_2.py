@@ -14,3 +14,15 @@
 
 ЗДЕСЬ ДОЛЖНА БЫТЬ РЕАЛИЗАЦИЯ ЧЕРЕЗ РЕКУРСИЮ
 """
+
+NUMB = int(input('Введите число: '))
+
+
+def rec(inv_numb, numb):
+    if numb == 0:
+        return str(inv_numb)
+    elif numb > 0:
+        return rec(inv_numb * 10 + numb % 10, numb // 10)
+
+
+print(f'Перевёрнутое число: {rec(0, NUMB)}')

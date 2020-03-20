@@ -8,3 +8,15 @@
 
 ЗДЕСЬ ДОЛЖНА БЫТЬ РЕАЛИЗАЦИЯ ЧЕРЕЗ РЕКУРСИЮ
 """
+
+COUNT = int(input('Введите количество элементов: '))
+
+
+def sum_list_number(i, num, n, sum_numb):
+    if i == n:
+        return sum_numb
+    elif i < n:
+        return sum_list_number(i + 1, num / (-2), n, sum_numb + num / (-2))
+
+
+print(f'Сумма элементов ряда: {sum_list_number(1, 1, COUNT, 1)}')

@@ -32,3 +32,37 @@
 
 ЗДЕСЬ ДОЛЖНА БЫТЬ РЕАЛИЗАЦИЯ ЧЕРЕЗ ЦИКЛ
 """
+import sys
+
+while True:
+    OPERATOR = input('\nВведите знак операции (+, -, *, / или 0 для выхода) ')
+    if OPERATOR == '0':
+        print('Завершение работы')
+        sys.exit()
+    elif OPERATOR in ('+', '-', '*', '/'):
+        while True:
+            try:
+                A = float(input('Введите первое число: '))
+                B = float(input('Введите второе число: '))
+
+                if OPERATOR == '+':
+                    print(f'Результат {A} + {B} = {A + B}')
+                    break
+                if OPERATOR == '-':
+                    print(f'Результат {A} - {B} = {A - B}')
+                    break
+                if OPERATOR == '*':
+                    print(f'Результат {A} * {B} = {A * B}')
+                    break
+                if OPERATOR == '/':
+                    try:
+                        print(f'Результат {A} / {B} = {A / B}')
+                        break
+                    except ZeroDivisionError:
+                        if B == 0:
+                            print('Делить на ноль нельзя!')
+                            continue
+            except ValueError:
+                print('Ошибка ввода! Введите числовые значения')
+    else:
+        print('Неверная операция! Повторите ввод')
