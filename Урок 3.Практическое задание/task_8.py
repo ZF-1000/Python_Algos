@@ -36,3 +36,20 @@
 [3, 3, 3, 3, 12]
 [3, 3, 3, 3, 12]
 """
+while True:
+    try:
+        ARRAY = []
+        for i in range(1, 5):
+            NUMB_LST = []
+            print(f'Введите через Enter 4 элемента {i}-ой строки:')
+            for j in range(4):
+                k = int(input(''))
+                NUMB_LST.append(k)
+            NUMB_LST.append(sum(NUMB_LST))
+            ARRAY.append(NUMB_LST)
+        print(f'\nПолученная матрица:')
+        for i in ARRAY:
+            print(i)
+        break
+    except ValueError:
+        print('Некорректно введённые данные!')

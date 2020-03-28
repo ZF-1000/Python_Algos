@@ -11,3 +11,14 @@
 6 позиции, а минимальное число  -49 стоит на    0 позиции
 [-49, 26, 41, 75, 23, 52, 88, 60, 69, -18]
 """
+
+NUMS_LST = [88, 26, 41, 75, 23, 52, -49, 60, 69, -18]
+print(f'\nИсходный массив чисел:\n{NUMS_LST}')
+MAX_NUMB = max(NUMS_LST)
+MIN_NUMB = min(NUMS_LST)
+INDEX_MAX = NUMS_LST.index(MAX_NUMB)
+INDEX_MIN = NUMS_LST.index(MIN_NUMB)
+NUMS_LST[INDEX_MAX], NUMS_LST[INDEX_MIN] = NUMS_LST[INDEX_MIN], NUMS_LST[INDEX_MAX]
+print(f'Максимальный элемент массива: {MAX_NUMB}')
+print(f'Минимальный элемент массива: {MIN_NUMB}')
+print(f'\nПреобразованный массив:\n{NUMS_LST}')
