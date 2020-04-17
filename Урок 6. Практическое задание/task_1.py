@@ -12,3 +12,132 @@
 ВНИМАНИЕ: ЗАДАНИЯ, В КОТОРЫХ БУДУТ ГОЛЫЕ ЦИФРЫ ЗАМЕРОВ (БЕЗ АНАЛИТИКИ)
 БУДУТ ПРИНИМАТЬСЯ С ОЦЕНКОЙ УДОВЛЕТВОРИТЕЛЬНО
 """
+
+# Версия Python: 3.7.4
+# 64-разрядная ос
+
+
+import time
+import memory_profiler
+from memory_profiler import profile
+
+"""
+Реализация №1. Без использования «Решета Эратосфена»
+"""
+
+# _________________Алгоритм без использования «Решета Эратосфена»_________________
+
+
+@profile
+def prime_numb(fin_numb):
+    lst = []
+    for k in range(2, fin_numb + 1):
+        for i in range(2, k):
+            if k % i == 0:
+                break
+        else:
+            lst.append(k)
+    return lst
+
+
+"""
+Реализация №2. С использованием «Решета Эратосфена»
+"""
+
+# _________________Алгоритм с использованием «Решета Эратосфена»_________________
+
+
+@profile
+def prime_numb_ert(fin_numb):
+    a = [0] * fin_numb
+    for i in range(fin_numb):
+        a[i] = i
+    a[1] = 0
+    m = 2
+    while m < fin_numb:
+        if a[m] != 0:
+            j = m * 2
+            while j < fin_numb:
+                a[j] = 0
+                j = j + m
+        m += 1
+    lst = []
+    for i in a:
+        if a[i] != 0:
+            lst.append(a[i])
+    del a
+    return lst
+
+
+if __name__ == "__main__":
+
+    t1 = time.process_time()
+    m1 = memory_profiler.memory_usage()
+
+    # prime_1 = prime_numb(10000)
+    prime_2 = prime_numb_ert(10000)       # включать попеременно для каждого замера
+
+    t2 = time.process_time()
+    m2 = memory_profiler.memory_usage()
+
+    time_diff = t2 - t1
+    mem_diff = m2[0] - m1[0]
+    print(f"Выполнение заняло {time_diff} сек и {mem_diff} Мб")
+
+
+# Вывод при поиске простых чисел до числа "10000"
+# _________________Алгоритм без использования «Решета Эратосфена»_________________
+# Line #    Mem usage    Increment   Line Contents
+# ================================================
+#     31     12.5 MiB     12.5 MiB   @profile
+#     32                             def prime_numb(fin_numb):
+#     33     12.5 MiB      0.0 MiB       lst = []
+#     34     12.6 MiB      0.0 MiB       for k in range(2, fin_numb + 1):
+#     35     12.6 MiB      0.0 MiB           for i in range(2, k):
+#     36     12.6 MiB      0.0 MiB               if k % i == 0:
+#     37     12.6 MiB      0.0 MiB                   break
+#     38                                     else:
+#     39     12.6 MiB      0.0 MiB               lst.append(k)
+#     40     12.5 MiB      0.0 MiB       return lst
+#
+#
+# Выполнение заняло 498.09559290000004 сек и 0.16015625 Мб
+
+
+# _________________Алгоритм с использованием «Решета Эратосфена»_________________
+# Line #    Mem usage    Increment   Line Contents
+# ================================================
+#     50     12.5 MiB     12.5 MiB   @profile
+#     51                             def prime_numb_ert(fin_numb):
+#     52     12.5 MiB      0.0 MiB       a = [0] * fin_numb
+#     53     12.7 MiB      0.0 MiB       for i in range(fin_numb):
+#     54     12.7 MiB      0.0 MiB           a[i] = i
+#     55     12.7 MiB      0.0 MiB       a[1] = 0
+#     56     12.7 MiB      0.0 MiB       m = 2
+#     57     12.7 MiB      0.0 MiB       while m < fin_numb:
+#     58     12.7 MiB      0.0 MiB           if a[m] != 0:
+#     59     12.7 MiB      0.0 MiB               j = m * 2
+#     60     12.7 MiB      0.0 MiB               while j < fin_numb:
+#     61     12.7 MiB      0.0 MiB                   a[j] = 0
+#     62     12.7 MiB      0.0 MiB                   j = j + m
+#     63     12.7 MiB      0.0 MiB           m += 1
+#     64     12.7 MiB      0.0 MiB       lst = []
+#     65     12.7 MiB      0.0 MiB       for i in a:
+#     66     12.7 MiB      0.0 MiB           if a[i] != 0:
+#     67     12.7 MiB      0.0 MiB               lst.append(a[i])
+#     68     12.7 MiB      0.0 MiB       del a
+#     69     12.7 MiB      0.0 MiB       return lst
+#
+#
+# Выполнение заняло 6.2088398 сек и 0.28515625 Мб
+
+
+'''
+На малых входных данных (поиск простых числе до 10000) с использованием 2-х алгоритмов:
+Алгоритм №1. Алгоритм без использования «Решета Эратосфена»
+Алгоритм №2. Алгоритм с использованием «Решета Эратосфена»
+можно увидеть, что алгоритм №2 использует почти в 2 раза больше памяти, что связано с формированием списка чисел до 
+заданного числа и дальнейшей замене сложных чисел нулями. В результате после выполнения алгоритма, список 
+состоит из простых чисел и нулей. После чего простые числа записываются в новый список, а старый (с нулями) удаляется.
+Хоть алгоритм №2 и использует почти в 2 раза больше памяти надо отметить гораздо быструю скорость выполнения.
+'''
