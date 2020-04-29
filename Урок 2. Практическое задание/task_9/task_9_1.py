@@ -10,3 +10,27 @@
 
 ЗДЕСЬ ДОЛЖНА БЫТЬ РЕАЛИЗАЦИЯ ЧЕРЕЗ ЦИКЛ
 """
+while True:
+    try:
+        COUNT = int(input('Введите количество чисел: '))
+
+        MAX_NUM = 0  # число
+        MAX_SUM = 0  # сумма чисел
+        NUM = 0
+        while COUNT != 0:
+            NUM += 1  # счётчик вводимого числа
+            NUMBER = int(input(f'Введите число {str(NUM)}: '))
+
+            COUNT = COUNT - 1  # счётчик вводимых чисел
+            CURR_NUM = NUMBER  # присваиваем текущему значению числа
+            CURR_SUM = 0  # обнуляем сумму цифр числа
+            while NUMBER > 0:  # вычисление суммы цифр числа
+                CURR_SUM = CURR_SUM + NUMBER % 10
+                NUMBER = NUMBER // 10  # отщипываем от числа по одной цифре
+            if CURR_SUM > MAX_SUM:  # максимальная сумму цифр числа и само число
+                MAX_NUM = CURR_NUM
+                MAX_SUM = CURR_SUM
+        print(f'Число "{MAX_NUM}" имеет максимальную сумму цифр: {MAX_SUM}')
+        break
+    except ValueError:
+        print('Некорректно введены данные!\n')

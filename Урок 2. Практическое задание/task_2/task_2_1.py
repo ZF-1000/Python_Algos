@@ -12,3 +12,19 @@
 
 ЗДЕСЬ ДОЛЖНА БЫТЬ РЕАЛИЗАЦИЯ ЧЕРЕЗ ЦИКЛ
 """
+while True:
+    try:
+        NUMB = input('Введите натуральное число: ')
+        EVEN = []  # четные цифры
+        ODD = []  # нечетные
+
+        for i in NUMB:
+            if int(i) % 2 == 0:
+                EVEN.append(i)
+            else:
+                ODD.append(i)
+        print(f'В числе {NUMB} всего {len(NUMB)} цифр(ы)')
+        print(f'Из которых {len(EVEN)} чётных ({EVEN}) и {len(ODD)} нечётных ({ODD})')
+        break
+    except ValueError:
+        print('Некорректно введены данные!\n')
